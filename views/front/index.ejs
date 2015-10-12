@@ -1,0 +1,8 @@
+<% layout('layout/page') -%>
+<% block('title', 'Propoganda') -%>
+<h1>Welcome to Propaganda, <% if (!user){%>
+    guest
+    <%} else {%>
+    <%=user.get('username')%>
+    <%}%></h1>
+<p class="lead">Hello from index</p>
