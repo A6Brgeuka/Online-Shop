@@ -1,12 +1,17 @@
 <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contacts">Contacts</a></li>
+        <li><a href="/productlist">Products</a></li>
         <% if (user) { %>
+        <li><a href="/cart">Cart</a></li>
         <li><a href="/chat">Chat</a></li>
         <% } %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <% if (user) { %>
+        <li><a href="/profile">Hello, <%=user.get('username')%></a></li>
         <li><a href="" onclick="$('<form method=POST action=/signout>').appendTo('body').submit();return false">Sign out</a></form></li>
         <% } else { %>
         <li><a href="/signup">Sign up</a></li>
@@ -14,3 +19,16 @@
         <% } %>
     </ul>
 </nav>
+
+<div id="CategoryMenu" style="text-align: center">
+<% category.forEach(function(item){ %>
+   <b style="font-size: large; font-style: normal">
+       <a href="/productlist?id=<%=item._id%>"><%= item.categoryName%></a>
+   </b>
+<% });%>
+</div>
+
+
+
+
+

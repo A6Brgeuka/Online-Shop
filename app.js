@@ -43,15 +43,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('middleware/sendHttpError'));
 app.use(require('middleware/loadUser'));
+app.use(require('middleware/loadCategory'));
 
 require('routes')(app);
 
 // catch 404 and forward to error handler
-/*app.use(function(req, res, next) {
+app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-});*/
+});
 
 // error handlers
 

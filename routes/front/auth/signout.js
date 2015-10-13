@@ -2,9 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-    req.session.destroy(function(err) {
-        if (err) return next(err);
+    var sid = req.session.id;
 
+    var io = req.app.get('io');
+
+    req.session.destroy(function(err) {
+        //io.sockets.$emit("session:reload", sid);
+        if (err) return next(err);
         res.redirect('/');
     });
 });

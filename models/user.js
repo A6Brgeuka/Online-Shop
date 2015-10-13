@@ -19,6 +19,10 @@ var schema = new Schema({
         type: String,
         required: true
     },
+    Role:{
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    },
     created: {
         type: Date,
         default: Date.now

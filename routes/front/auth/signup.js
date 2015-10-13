@@ -11,22 +11,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    console.log(req.body);
+  console.log(req.body);
 
-    var username = req.body.username;
-    var password = req.body.password;
-    var confpassword = req.body.confpassword;
+  var username = req.body.username;
+  var password = req.body.password;
+  var confpassword = req.body.confpassword;
 
     User.signup(username, password, confpassword,function(err, user) {
-        if (err) {
-            if (err instanceof AuthError) {
-                return next(new HttpError(403, err.message));
-            } else {
-                return next(err);
-            }
+      if (err) {
+        if (err instanceof AuthError) {
+          return next(new HttpError(403, err.message));
+        } else {
+          return next(err);
         }
-        req.session.user = user._id;
-        res.send({});
+      }
+
+      req.session.user = user._id;
+      res.send({});
 
     });
 });
