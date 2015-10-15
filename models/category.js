@@ -10,6 +10,10 @@ var schema = new Schema({
         unique: true,
         required: true
     },
+    description : {
+        type: String
+        //required: true
+    },
     created: {
         type: Date,
         default: Date.now

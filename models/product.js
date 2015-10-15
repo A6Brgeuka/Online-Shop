@@ -10,6 +10,9 @@ var schema = new Schema({
         type: String,
         required: true
     },
+    imagePath:{
+        type: String
+    },
     price: {
         type: Number,
         required: true

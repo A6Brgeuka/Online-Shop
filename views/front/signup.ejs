@@ -1,34 +1,33 @@
 <% layout('layout/page') -%>
 <% block('title', "Sign in") -%>
 
-<div>
+<div class="container">
     <p class="lead">Sign up</p>
-
+    <p>Use this form for create new account</p>
     <form class="form-horizontal login-form" name="signip-form">
         <div class="form-group">
-            <label for="input-username" class="col-lg-2 control-label">Username</label>
+            <label for="input-username" class="col-lg-1 control-label">Username</label>
 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <input name="username" value="" type="text" class="form-control" id="input-username" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
-            <label for="input-password" class="col-lg-2 control-label">Password</label>
+            <label for="input-password" class="col-lg-1 control-label">Password</label>
 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <input name="password" value="" type="password" class="form-control" id="input-password" placeholder="Password">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="input-password" class="col-lg-2 control-label">Confirm password</label>
-
-            <div class="col-lg-5">
+            <label for="input-password" class="col-lg-1 control-label">Confirm password</label>
+            <div class="col-lg-4">
                 <input name="confpassword" value="" type="password" class="form-control" id="input-confpassword" placeholder="Confirm password">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <div class="col-lg-offset-1 col-lg-3">
                 <button type="submit" class="btn btn-primary" data-loading-text="Send...">Sign up</button>
                 <span class="help-block error"></span>
             </div>

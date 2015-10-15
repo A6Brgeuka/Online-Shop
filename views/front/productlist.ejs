@@ -1,4 +1,35 @@
 <% layout('layout/page') -%>
 <% block('title', "Products") -%>
 
-Products here
+<section>
+    <p class="lead">Products</p>
+
+    <%products.forEach(function(product){ %>
+    <table style="float: left; border: 1px solid; text-align: center">
+        <tr>
+            <td>
+                <a href="/productDetails?productId=<%=product._id%>"><img src="/images/Thumbs/<%=product.imagePath%>" width="100" height="75" style="border: solid" alt=""/></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/productDetails?productId=<%=product._id%>"><%=product.productName%></a>
+                <br/>
+                <span>
+                    <b>Price: <%=product.price%></b>
+                </span>
+                <br/>
+                <a href="/addtocart?productId=<%=product._id%>">
+                    <span class="ProductListItem">
+                        <b>Add to cart<b>
+                    </span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <% })%>
+</section>
