@@ -19,7 +19,7 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    Role:{
+    roleId:{
         type: Schema.Types.ObjectId,
         ref: 'Role'
     },

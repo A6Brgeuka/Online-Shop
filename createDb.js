@@ -3,11 +3,13 @@ var async = require('async');
 var log = require('libs/log')(module);
 
 var cat = [];
+var roles1 = [];
 
 async.series([
     open,
     dropDatabase,
     requireModels,
+    createRoles,
     createUsers,
     createCategories,
     createProducts
@@ -28,6 +30,7 @@ function dropDatabase(callback) {
 }
 
 function requireModels(callback) {
+    require('models/role');
     require('models/user');
     require('models/product');
     require('models/category');
@@ -37,14 +40,31 @@ function requireModels(callback) {
     }, callback);
 }
 
+
+function createRoles(callback) {
+
+    console.log("create Roles");
+
+    var roles = [
+        {role: 'admin'},
+        {role: 'user'}
+    ];
+
+    async.each(roles, function(roleData, callback) {
+        var role = new mongoose.models.Role(roleData);
+        roles1.push(role);
+        role.save(callback);
+    }, callback);
+}
+
 function createUsers(callback) {
 
-    console.log("createUsers");
+    console.log("create Users");
 
     var users = [
-        {username: 'admin', password: 'admin'},
-        {username: 'user1', password: 'user1'},
-        {username: 'user2', password: 'user2'}
+        {username: 'admin', password: 'admin', roleId: roles1[0]._id},
+        {username: 'user1', password: 'user1', roleId: roles1[1]._id},
+        {username: 'user2', password: 'user2', roleId: roles1[1]._id}
     ];
 
     async.each(users, function(userData, callback) {
@@ -53,14 +73,15 @@ function createUsers(callback) {
     }, callback);
 }
 
+
 function createCategories(callback) {
-    console.log("createCategories");
+    console.log("create Categories");
 
     var categories = [
-        {categoryName: 'categoryName1', description: 'description1'},
-        {categoryName: 'categoryName2', description: 'description2'},
-        {categoryName: 'categoryName3', description: 'description3'},
-        {categoryName: 'categoryName4', description: 'description3'}
+        {categoryName: 'Категория1', description: 'description1'},
+        {categoryName: 'Категория2', description: 'description2'},
+        {categoryName: 'Котегория3', description: 'description3'},
+        {categoryName: 'Категория', description: 'description3'}
     ];
 
     async.each(categories, function(categoryData, callback) {
@@ -71,19 +92,19 @@ function createCategories(callback) {
 }
 
 function createProducts(callback) {
-    console.log("createProducts");
+    console.log("create Products");
 
     var products = [
-        {productName: 'productName1', description: 'description1', imagePath: 'boatbig.png', price: 10, Category: cat[0]._id},
-        {productName: 'productName2', description: 'description2', imagePath: 'boatsail.png', price: 15, Category: cat[0]._id},
-        {productName: 'productName3', description: 'description3', imagePath: 'carracer.png', price: 20, Category: cat[0]._id},
-        {productName: 'productName4', description: 'description4', imagePath: 'busgreen.png', price: 25, Category: cat[1]._id},
-        {productName: 'productName5', description: 'description5', imagePath: 'rocket.png', price: 30, Category: cat[1]._id},
-        {productName: 'productName6', description: 'description6', imagePath: 'boatbig.png', price: 35, Category: cat[1]._id},
-        {productName: 'productName7', description: 'description7', imagePath: 'planeglider.png', price: 40, Category: cat[2]._id},
-        {productName: 'productName8', description: 'description8', imagePath: 'planeprop.png', price: 45, Category: cat[2]._id},
-        {productName: 'productName9', description: 'description9', imagePath: 'carfast.png', price: 50, Category: cat[2]._id},
-        {productName: 'productName10', description: 'description10', imagePath: 'carearly.png', price: 55, Category: cat[2]._id}
+        {productName: 'productName1', description: 'description1', imagePath: 'boatbig.png', price: 10, categoryId: cat[0]._id},
+        {productName: 'productName2', description: 'description2', imagePath: 'boatsail.png', price: 15, categoryId: cat[0]._id},
+        {productName: 'productName3', description: 'description3', imagePath: 'carracer.png', price: 20, categoryId: cat[0]._id},
+        {productName: 'productName4', description: 'description4', imagePath: 'busgreen.png', price: 25, categoryId: cat[1]._id},
+        {productName: 'productName5', description: 'description5', imagePath: 'rocket.png', price: 30, categoryId: cat[1]._id},
+        {productName: 'productName6', description: 'description6', imagePath: 'boatbig.png', price: 35, categoryId: cat[1]._id},
+        {productName: 'productName7', description: 'description7', imagePath: 'planeglider.png', price: 40, categoryId: cat[2]._id},
+        {productName: 'productName8', description: 'description8', imagePath: 'planeprop.png', price: 45, categoryId: cat[2]._id},
+        {productName: 'productName9', description: 'description9', imagePath: 'carfast.png', price: 50, categoryId: cat[2]._id},
+        {productName: 'productName10', description: 'description10', imagePath: 'carearly.png', price: 55, categoryId: cat[2]._id}
     ];
 
     async.each(products, function(productData, callback) {

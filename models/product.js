@@ -17,7 +17,7 @@ var schema = new Schema({
         type: Number,
         required: true
     },
-    Category:{
+    categoryId:{
         type: Schema.Types.ObjectId,
         ref: 'Category'
     },

@@ -11,4 +11,16 @@ module.exports = function(req, res, next) {
         req.user = res.locals.user = user;
         next();
     });
+
+    /*User
+        .findOne({_id: req.session.user})
+        .populate('roleId')
+        .exec(function(err, user){
+            if (err) return next(err);
+
+            console.log(user);
+
+            req.user = res.locals.user = user;
+            next();
+        });*/
 };

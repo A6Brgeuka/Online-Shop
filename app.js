@@ -27,8 +27,8 @@ app.use(cookieParser());
 var sessionStore = require('libs/sessionStore');
 
 app.use(session({
-  secret: config.get('session:secret'),  //для того чтобы подписывать куки
-  key: config.get('session:key'), //кука
+  secret: config.get('session:secret'),  //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+  key: config.get('session:key'), //пїЅпїЅпїЅпїЅ
   cookie: config.get('session:cookie'), //
   store: sessionStore
 }));
